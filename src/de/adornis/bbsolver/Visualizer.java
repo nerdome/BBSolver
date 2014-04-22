@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class Visualizer extends JFrame {
 
-    private BMap map;
     public static boolean gui = true;
     public static boolean disabled = false;
+    private final BMapHandler handler;
+
     private JPanel visualizerRootPanel;
     private JLabel[][] out;
     private JLabel aa;
@@ -48,14 +49,15 @@ public class Visualizer extends JFrame {
     private JTextArea output;
     private JButton brute;
     private JTextField touches;
+    private JComboBox modus;
 
-    public Visualizer(final BMap map) {
-        super("hello wworlds");
-        this.map = map;
+    public Visualizer() {
+        super("hello world");
+        this.handler = new BMapHandler();
         out = new JLabel[5][6];
         if(gui) {
             setContentPane(visualizerRootPanel);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setVisible(true);
             out[0][0] = aa;
             out[1][0] = ba;
@@ -87,36 +89,36 @@ public class Visualizer extends JFrame {
             out[2][5] = cf;
             out[3][5] = df;
             out[4][5] = ef;
+
             restart.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    map.restoreMap();
                     output.setText("");
+                    handler.reset();
                 }
             });
             exit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    Thread.currentThread().interrupt();
                     Visualizer.this.dispatchEvent(new WindowEvent(Visualizer.this, WindowEvent.WINDOW_CLOSING));
                 }
             });
             cont.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
-                    map.nextCycle();
+                    handler.getMap().nextCycle();
                 }
             });
             run.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    while (map.nextCycle()) ;
+                    handler.getMap().completeCycle();
                 }
             });
             brute.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    ArrayList<int[]> results = map.bruteForceThisShit(Integer.parseInt(touches.getText()));
+                    ArrayList<int[]> results = handler.bruteForceThisShit(Integer.parseInt(touches.getText()));
                     cleanLog();
                     log("Results: ");
                     for (int[] result : results) {
@@ -125,15 +127,50 @@ public class Visualizer extends JFrame {
                     logSectionEnd();
                 }
             });
+            modus.addItemListener(new ItemListener() {
+                @Override
+                public void itemStateChanged(ItemEvent e) {
+                    switch(e.getItem().toString().toLowerCase().charAt(0)) {
+                        case 'm':
+                            cont.setEnabled(true);
+                            brute.setEnabled(false);
+                            run.setEnabled(false);
+                            break;
+                        case 'a':
+                            run.setEnabled(true);
+                            brute.setEnabled(false);
+                            cont.setEnabled(false);
+                            break;
+                        case 'b':
+                            brute.setEnabled(true);
+                            cont.setEnabled(false);
+                            run.setEnabled(false);
+                            break;
+                        case 'n':
+                            brute.setEnabled(false);
+                            cont.setEnabled(false);
+                            run.setEnabled(false);
 
-            for(int x = 0; x < map.sizeX; x++) {
-                for(int y = 0; y < map.sizeY; y++) {
+                            for(int x = 0; x < BMapHandler.getSizeX(); x++) {
+                                for(int y = 0; y < BMapHandler.getSizeY(); y++) {
+                                    out[x][y].setText("");
+                                }
+                            }
+
+                            break;
+                    }
+                    handler.reset();
+                }
+            });
+
+            for(int x = 0; x < BMapHandler.getSizeX(); x++) {
+                for(int y = 0; y < BMapHandler.getSizeY(); y++) {
                     final int currentX = x;
                     final int currentY = y;
                     out[x][y].addMouseListener(new MouseListener() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            map.touch(currentX,currentY);
+                            handler.touch(currentX,currentY);
                         }
 
                         @Override
@@ -159,17 +196,19 @@ public class Visualizer extends JFrame {
                 }
             }
         }
+
+        // TODO improve dirty workaround to get the event to fire
+        modus.setSelectedIndex(1);
+        modus.setSelectedIndex(0);
     }
 
-    public void visualize() {
-
-        Entity[][][] fields = map.getMap();
+    public void visualize(Entity[][][] fields) {
 
         if(!disabled) {
             if (!gui) {
                 String res = "\n";
-                for (int i = 0; i < map.sizeY; i++) {
-                    for (int j = 0; j < map.sizeX; j++) {
+                for (int i = 0; i < BMapHandler.getSizeY(); i++) {
+                    for (int j = 0; j < BMapHandler.getSizeX(); j++) {
                         if (fields[j][i][0] != null && fields[j][i][1] != null) {
                             res += " " + ((BField) fields[j][i][0]).getState() + "b";
                         } else if (fields[j][i][0] == null && fields[j][i][1] == null) {
@@ -186,8 +225,8 @@ public class Visualizer extends JFrame {
                 System.out.println(res);
             } else {
 
-                for (int i = 0; i < map.sizeY; i++) {
-                    for (int j = 0; j < map.sizeX; j++) {
+                for (int i = 0; i < BMapHandler.getSizeY(); i++) {
+                    for (int j = 0; j < BMapHandler.getSizeX(); j++) {
                         if (fields[j][i][0] != null) {
                             out[j][i].setText("=" + ((BField) fields[j][i][0]).getState() + "= ");
                         } else {
@@ -220,8 +259,7 @@ public class Visualizer extends JFrame {
         output.setText("");
     }
 
-    public void shiftFocus(BMap newMap) {
-        this.map = newMap;
-        visualize();
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

@@ -1,87 +1,37 @@
 package de.adornis.bbsolver;
 
-import java.util.ArrayList;
-
-
-
-// get rid of origFields, make new BMap every time
-
-
-
-public class BMap {
+public class BMap implements Cloneable {
     // x | y | entities
-    private Entity[][][] origFields;
     private Entity[][][] fields;
-    public static Visualizer v = null;
-    public final int sizeX;
-    public final int sizeY;
+    public Visualizer v;
+    private final int sizeX;
+    private final int sizeY;
 
-    public BMap(int sizeX, int sizeY) {
-        this.sizeX = sizeX;
-        this.sizeY = sizeY;
-        v = new Visualizer(this);
+    public BMap(Entity[][][] contents) {
+        this.v = Main.v;
+        this.sizeX = BMapHandler.getSizeX();
+        this.sizeY = BMapHandler.getSizeY();
 
-        origFields = new Entity[sizeX][sizeY][5];
-        fields = new Entity[sizeX][sizeY][5];
-        fillExample();
-        restoreMap();
+        fields = contents;
 
-        v.visualize();
-    }
-
-    public BMap(BMap parent) {
-        Entity[][][] parentFields = parent.getMap();
-        this.sizeX = parentFields.length;
-        this.sizeY = parentFields[0].length;
-        v.shiftFocus(this);
-
-        this.origFields = parentFields;
-        fields = new Entity[sizeX][sizeY][5];
-        restoreMap();
-
-        v.visualize();
-    }
-
-    public void restoreMap() {
-
-        for(int x = 0; x < sizeX; x++) {
-            for (int y = 0; y < sizeY; y++) {
-                for(int k = 0; k < 5; k++) {
-                    fields[x][y][k] = null;
-                }
-            }
+        // avoid running into nullpointer in the beginning when v isn't initialized
+        if(v != null) {
+            v.visualize(fields);
         }
-        for(int x = 0; x < sizeX; x++) {
-            for(int y = 0; y < sizeY; y++) {
-                BField old = (BField) origFields[x][y][0];
-                if(origFields[x][y][0] != null) {
-                    fields[x][y][0] = new BField(old.getState());
-                }
-            }
-        }
-        v.visualize();
     }
 
-    private void fillExample() {
-        origFields[0][0][0] = new BField(BField.GREEN);
-        origFields[0][2][0] = new BField(BField.GREEN);
-        origFields[0][4][0] = new BField(BField.RED);
-        origFields[0][5][0] = new BField(BField.RED);
-    }
-
-    public void completeCycle(int x, int y) {
-        touch(x, y);
+    public void completeCycle() {
         while(nextCycle());
-        v.visualize();
+        v.visualize(fields);
     }
 
     public void touch(int x, int y) {
         if(fields[x][y][0] != null) {
-            fields[x][y][1] = new Bubble(x, y, 0, this);
+            fields[x][y][1] = new Bubble(x, y, 0);
         } else {
             v.log("Don't you push into thin air!");
         }
-        v.visualize();
+        v.visualize(fields);
     }
 
     public boolean nextCycle() {
@@ -102,7 +52,7 @@ public class BMap {
                             fields[x][y][j] = null;
                             if (((BField) fields[x][y][0]).touch()) {
                                 for (int d = 0; d < 4; d++) {
-                                    fields[x][y][d + 1] = new Bubble(x, y, d, this);
+                                    fields[x][y][d + 1] = new Bubble(x, y, d);
                                     v.log("Created bubble " + x + " " + y + " " + d);
                                 }
                                 fields[x][y][0] = null;
@@ -114,7 +64,7 @@ public class BMap {
             }
         }
 
-        v.visualize();
+        v.visualize(fields);
 
     }
 
@@ -157,19 +107,16 @@ public class BMap {
         }
         v.log(count + " bubbles remaining");
 
-        v.visualize();
-        if(count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        v.visualize(fields);
+        return count > 0;
     }
 
-    public Entity[][][] getMap() {
+    @Deprecated
+    public Entity[][][] getContent() {
         return fields;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         for(int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 for(int k = 0; k < 5; k++) {
@@ -182,44 +129,24 @@ public class BMap {
         return true;
     }
 
-    public ArrayList<int[]> bruteForceThisShit(int amountTouches) {
-        amountTouches--;
-        ArrayList<int[]> results = new ArrayList<int[]>();
-        ArrayList<BMap> maps = new ArrayList<BMap>();
+    public BMap clone() {
+
+        Entity[][][] newContents = new Entity[sizeX][sizeY][5];
+
         for(int x = 0; x < sizeX; x++) {
             for(int y = 0; y < sizeY; y++) {
-                v.cleanLog();
-                BMap newMap = new BMap(this);
-                newMap.completeCycle(x, y);
-                maps.add(newMap);
-                if(newMap.isEmpty()) {
-                    // success
-                    results.add(new int[]{x, y});
+                if(fields[x][y][0] != null) {
+                    newContents[x][y][0] = new BField(((BField) fields[x][y][0]).getState());
                 }
-                restoreMap();
+                for(int k = 1; k < 5; k++) {
+                    if(fields[x][y][k] != null) {
+                        Bubble b = ((Bubble) fields[x][y][k]);
+                        newContents[x][y][k] = new Bubble(b.getX(), b.getY(), b.getDirection());
+                    }
+                }
             }
         }
 
-        // continue if enough touches left
-        if(amountTouches > 0) {
-            for(BMap current : maps) {
-                v.logBackground("Testing new map");
-
-                try {
-                    Thread.currentThread().sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                ArrayList<int[]> tempRes = current.bruteForceThisShit(amountTouches);
-
-                for(int[] res : tempRes) {
-                    v.logBackground(res[0] + " " + res[1]);
-                }
-                results.addAll(tempRes);
-            }
-        }
-
-        return results;
+        return new BMap(newContents);
     }
 }
