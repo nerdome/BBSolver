@@ -1,6 +1,8 @@
 package de.adornis.bbsolver;
 
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -50,6 +52,7 @@ public class Visualizer extends JFrame {
     private JButton brute;
     private JTextField touches;
     private JComboBox modus;
+    private JTextField delay;
 
     public Visualizer() {
         super("hello world");
@@ -59,6 +62,10 @@ public class Visualizer extends JFrame {
             setContentPane(visualizerRootPanel);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setVisible(true);
+
+            // auto scroll down
+            ((DefaultCaret)output.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
             out[0][0] = aa;
             out[1][0] = ba;
             out[2][0] = ca;
@@ -112,7 +119,7 @@ public class Visualizer extends JFrame {
             run.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    handler.getMap().completeCycle();
+                    handler.getMap().completeCycle(Long.parseLong(delay.getText()));
                 }
             });
             brute.addActionListener(new ActionListener() {
@@ -170,7 +177,16 @@ public class Visualizer extends JFrame {
                     out[x][y].addMouseListener(new MouseListener() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            handler.touch(currentX,currentY);
+                            handler.getMap().touch(currentX,currentY);
+
+                            SwingWorker<Void, Void> cycleWorker = new SwingWorker<Void, Void>() {
+                                @Override
+                                protected Void doInBackground() throws Exception {
+                                    handler.getMap().completeCycle(Long.parseLong(delay.getText()));
+                                    return null;
+                                }
+                            };
+                            cycleWorker.execute();
                         }
 
                         @Override
@@ -193,6 +209,8 @@ public class Visualizer extends JFrame {
 
                         }
                     });
+                    // in order to see background color
+                    out[x][y].setOpaque(true);
                 }
             }
         }
@@ -203,6 +221,7 @@ public class Visualizer extends JFrame {
     }
 
     public void visualize(Entity[][][] fields) {
+        logBackground("Visualizing...");
 
         if(!disabled) {
             if (!gui) {
@@ -223,14 +242,36 @@ public class Visualizer extends JFrame {
                 }
 
                 System.out.println(res);
+
             } else {
 
                 for (int i = 0; i < BMapHandler.getSizeY(); i++) {
                     for (int j = 0; j < BMapHandler.getSizeX(); j++) {
                         if (fields[j][i][0] != null) {
-                            out[j][i].setText("=" + ((BField) fields[j][i][0]).getState() + "= ");
+                            int state = ((BField) fields[j][i][0]).getState();
+                            out[j][i].setText("=" + state + "= ");
+
+                            Color c;
+                            switch (state) {
+                                case 1:
+                                    c = Color.RED;
+                                    break;
+                                case 2:
+                                    c = Color.GREEN;
+                                    break;
+                                case 3:
+                                    c = Color.YELLOW;
+                                    break;
+                                case 4:
+                                    c = Color.BLUE;
+                                    break;
+                                default:
+                                    c = Color.WHITE;
+                            }
+                            out[j][i].setBackground(c);
                         } else {
                             out[j][i].setText("=-= ");
+                            out[j][i].setBackground(Color.WHITE);
                         }
                         for (int z = 1; z <= 4; z++) {
                             if (fields[j][i][z] != null) {

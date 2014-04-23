@@ -1,5 +1,7 @@
 package de.adornis.bbsolver;
 
+import java.util.concurrent.Callable;
+
 public class BMap implements Cloneable {
     // x | y | entities
     private Entity[][][] fields;
@@ -20,9 +22,20 @@ public class BMap implements Cloneable {
         }
     }
 
-    public void completeCycle() {
-        while(nextCycle());
-        v.visualize(fields);
+    public void completeCycle(long delay) {
+        if(delay == 0) {
+            while (nextCycle()) ;
+            v.visualize(fields);
+        } else {
+            while (nextCycle()) {
+                try {
+                    Thread.currentThread().sleep(delay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     public void touch(int x, int y) {
@@ -38,6 +51,7 @@ public class BMap implements Cloneable {
         activate();
         boolean cont = move();
         v.logSectionEnd();
+        v.visualize(fields);
         return cont;
     }
 

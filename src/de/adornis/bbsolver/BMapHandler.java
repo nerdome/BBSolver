@@ -21,10 +21,34 @@ public class BMapHandler {
 
     private Entity[][][] generateExample() {
         Entity[][][] fields = new Entity[sizeX][sizeY][5];
+
         fields[0][0][0] = new BField(BField.GREEN);
-        fields[0][2][0] = new BField(BField.GREEN);
-        fields[0][4][0] = new BField(BField.RED);
-        fields[0][5][0] = new BField(BField.RED);
+        fields[0][1][0] = new BField(BField.GREEN);
+        fields[0][2][0] = new BField(BField.BLUE);
+        fields[0][3][0] = new BField(BField.YELLOW);
+        fields[0][5][0] = new BField(BField.BLUE);
+
+        fields[1][0][0] = new BField(BField.YELLOW);
+        fields[1][1][0] = new BField(BField.RED);
+        fields[1][2][0] = new BField(BField.RED);
+        fields[1][3][0] = new BField(BField.RED);
+        fields[1][4][0] = new BField(BField.BLUE);
+        fields[1][5][0] = new BField(BField.GREEN);
+
+        fields[2][0][0] = new BField(BField.GREEN);
+        fields[2][1][0] = new BField(BField.YELLOW);
+        fields[2][2][0] = new BField(BField.GREEN);
+        fields[2][5][0] = new BField(BField.YELLOW);
+
+        fields[3][1][0] = new BField(BField.GREEN);
+        fields[3][3][0] = new BField(BField.RED);
+        fields[3][5][0] = new BField(BField.RED);
+
+        fields[4][1][0] = new BField(BField.GREEN);
+        fields[4][3][0] = new BField(BField.RED);
+        fields[4][4][0] = new BField(BField.GREEN);
+        fields[4][5][0] = new BField(BField.RED);
+
         return fields;
     }
 
@@ -34,10 +58,6 @@ public class BMapHandler {
 
     public static int getSizeX() {
         return sizeX;
-    }
-
-    public void touch(int x, int y) {
-        head.touch(x, y);
     }
 
     public BMap getMap() {
@@ -53,7 +73,7 @@ public class BMapHandler {
                 v.cleanLog();
                 BMap newMap = head.clone();
                 newMap.touch(x, y);
-                newMap.completeCycle();
+                newMap.completeCycle(0);
                 maps.add(newMap);
                 if(newMap.isEmpty()) {
                     // success

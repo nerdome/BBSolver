@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="de.adornis.bbsolver.Visualizer">
-  <grid id="27dc6" binding="visualizerRootPanel" layout-manager="GridLayoutManager" row-count="9" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="visualizerRootPanel" layout-manager="GridLayoutManager" row-count="10" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="82" width="821" height="759"/>
+      <xy x="20" y="82" width="704" height="731"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -20,7 +20,7 @@
       </component>
       <component id="fcb11" class="javax.swing.JLabel" binding="aa">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -32,7 +32,7 @@
       </component>
       <component id="fcbd7" class="javax.swing.JLabel" binding="ba">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -44,7 +44,7 @@
       </component>
       <component id="b03bd" class="javax.swing.JLabel" binding="ca">
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="2" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -56,7 +56,7 @@
       </component>
       <component id="bf9db" class="javax.swing.JLabel" binding="da">
         <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="3" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -68,7 +68,7 @@
       </component>
       <component id="cae7b" class="javax.swing.JLabel" binding="ea">
         <constraints>
-          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="4" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -80,7 +80,7 @@
       </component>
       <component id="2906" class="javax.swing.JLabel" binding="ab">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -92,7 +92,7 @@
       </component>
       <component id="13648" class="javax.swing.JLabel" binding="bb">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -104,7 +104,7 @@
       </component>
       <component id="9b21" class="javax.swing.JLabel" binding="cb">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -116,7 +116,7 @@
       </component>
       <component id="6932f" class="javax.swing.JLabel" binding="db">
         <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -128,7 +128,7 @@
       </component>
       <component id="ec1cc" class="javax.swing.JLabel" binding="eb">
         <constraints>
-          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -140,7 +140,7 @@
       </component>
       <component id="2f650" class="javax.swing.JLabel" binding="ac">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -152,7 +152,7 @@
       </component>
       <component id="f2b06" class="javax.swing.JLabel" binding="bc">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -164,7 +164,7 @@
       </component>
       <component id="ee0f6" class="javax.swing.JLabel" binding="cc">
         <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -176,7 +176,7 @@
       </component>
       <component id="443ed" class="javax.swing.JLabel" binding="dc">
         <constraints>
-          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -188,7 +188,7 @@
       </component>
       <component id="3bed7" class="javax.swing.JLabel" binding="ec">
         <constraints>
-          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -200,7 +200,7 @@
       </component>
       <component id="d87be" class="javax.swing.JLabel" binding="ad">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -212,7 +212,7 @@
       </component>
       <component id="9fe7a" class="javax.swing.JLabel" binding="bd">
         <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -224,7 +224,7 @@
       </component>
       <component id="ac0a6" class="javax.swing.JLabel" binding="cd">
         <constraints>
-          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -236,7 +236,7 @@
       </component>
       <component id="7a2af" class="javax.swing.JLabel" binding="dd">
         <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -248,7 +248,7 @@
       </component>
       <component id="23d3" class="javax.swing.JLabel" binding="ed">
         <constraints>
-          <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -260,7 +260,7 @@
       </component>
       <component id="b02df" class="javax.swing.JLabel" binding="ae">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -272,7 +272,7 @@
       </component>
       <component id="5881c" class="javax.swing.JLabel" binding="be">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -284,7 +284,7 @@
       </component>
       <component id="1d8a3" class="javax.swing.JLabel" binding="ce">
         <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -296,7 +296,7 @@
       </component>
       <component id="6267f" class="javax.swing.JLabel" binding="de">
         <constraints>
-          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -308,7 +308,7 @@
       </component>
       <component id="eeee0" class="javax.swing.JLabel" binding="ee">
         <constraints>
-          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -320,7 +320,7 @@
       </component>
       <component id="219df" class="javax.swing.JLabel" binding="af">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -332,7 +332,7 @@
       </component>
       <component id="60858" class="javax.swing.JLabel" binding="bf">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -344,7 +344,7 @@
       </component>
       <component id="e9387" class="javax.swing.JLabel" binding="cf">
         <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -356,7 +356,7 @@
       </component>
       <component id="133f6" class="javax.swing.JLabel" binding="df">
         <constraints>
-          <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -368,7 +368,7 @@
       </component>
       <component id="7bd46" class="javax.swing.JLabel" binding="ef">
         <constraints>
-          <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="100" height="100"/>
             <preferred-size width="100" height="100"/>
             <maximum-size width="100" height="100"/>
@@ -380,7 +380,7 @@
       </component>
       <component id="88d84" class="javax.swing.JButton" binding="restart">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Restart"/>
@@ -388,7 +388,7 @@
       </component>
       <component id="f3080" class="javax.swing.JButton" binding="cont">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Continue"/>
@@ -396,7 +396,7 @@
       </component>
       <component id="6bc51" class="javax.swing.JButton" binding="run">
         <constraints>
-          <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Run!"/>
@@ -404,7 +404,7 @@
       </component>
       <scrollpane id="f698d">
         <constraints>
-          <grid row="1" column="5" row-span="6" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="5" row-span="5" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -417,7 +417,7 @@
       </scrollpane>
       <component id="200ae" class="javax.swing.JButton" binding="exit">
         <constraints>
-          <grid row="8" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Quit"/>
@@ -425,7 +425,7 @@
       </component>
       <component id="aeade" class="javax.swing.JButton" binding="brute">
         <constraints>
-          <grid row="8" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Brute Force!"/>
@@ -433,7 +433,7 @@
       </component>
       <component id="a433c" class="javax.swing.JTextField" binding="touches">
         <constraints>
-          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -442,9 +442,19 @@
           <toolTipText value="Number of Touches"/>
         </properties>
       </component>
+      <component id="65af7" class="javax.swing.JTextField" binding="delay">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="300"/>
+        </properties>
+      </component>
       <component id="4877e" class="javax.swing.JComboBox" binding="modus">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <model>
