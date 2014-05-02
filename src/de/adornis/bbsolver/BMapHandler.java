@@ -5,18 +5,28 @@ import java.util.ArrayList;
 public class BMapHandler {
     private static final int sizeX = 5;
     private static final int sizeY = 6;
-    public static final Visualizer v = Main.v;
+    private static final int touches = 5;
+    public static Visualizer v;
     private BMap initialMap;
     private BMap head;
-    private final ArrayList<BMap[]> maps = new ArrayList<BMap[]>();
+    private final ArrayList<BMapHandler> derivatives = new ArrayList<BMapHandler>();
 
-    public BMapHandler() {
-        initialMap = new BMap(generateExample());
+    public BMapHandler(Visualizer v) {
+        this.v = v;
+        initialMap = new BMap(generateExample(), this);
         reset();
+    }
+
+    public int getTouches() {
+        return touches;
     }
 
     public void reset() {
         head = initialMap.clone();
+    }
+
+    public void overwrite() {
+        initialMap = head.clone();
     }
 
     private Entity[][][] generateExample() {
@@ -31,7 +41,7 @@ public class BMapHandler {
         fields[1][0][0] = new BField(BField.YELLOW);
         fields[1][1][0] = new BField(BField.RED);
         fields[1][2][0] = new BField(BField.RED);
-        fields[1][3][0] = new BField(BField.RED);
+        fields[1][3][0] = new BField(BField.BLUE);
         fields[1][4][0] = new BField(BField.BLUE);
         fields[1][5][0] = new BField(BField.GREEN);
 
@@ -72,7 +82,11 @@ public class BMapHandler {
             for(int y = 0; y < sizeY; y++) {
                 v.cleanLog();
                 BMap newMap = head.clone();
-                newMap.touch(x, y);
+                try {
+                    newMap.touch(x, y);
+                } catch (TouchNotPossibleException e) {
+                    v.log("Touch not possible here!");
+                }
                 newMap.completeCycle(0);
                 maps.add(newMap);
                 if(newMap.isEmpty()) {
@@ -99,4 +113,11 @@ public class BMapHandler {
         return results;
     }
 
+    public void update(Entity[][][] fields) {
+        if(fields != null) {
+            v.visualize(fields);
+        } else {
+            v.logBackground("fields array not initiated yet");
+        }
+    }
 }

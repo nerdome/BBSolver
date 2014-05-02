@@ -1,31 +1,26 @@
 package de.adornis.bbsolver;
 
-import java.util.concurrent.Callable;
-
 public class BMap implements Cloneable {
     // x | y | entities
     private Entity[][][] fields;
-    public Visualizer v;
+    private BMapHandler handler;
     private final int sizeX;
     private final int sizeY;
 
-    public BMap(Entity[][][] contents) {
-        this.v = Main.v;
+    public BMap(Entity[][][] contents, BMapHandler handler) {
+        this.handler = handler;
         this.sizeX = BMapHandler.getSizeX();
         this.sizeY = BMapHandler.getSizeY();
 
         fields = contents;
 
-        // avoid running into nullpointer in the beginning when v isn't initialized
-        if(v != null) {
-            v.visualize(fields);
-        }
+        handler.update(fields);
     }
 
     public void completeCycle(long delay) {
         if(delay == 0) {
             while (nextCycle()) ;
-            v.visualize(fields);
+            handler.update(fields);
         } else {
             while (nextCycle()) {
                 try {
@@ -38,20 +33,19 @@ public class BMap implements Cloneable {
 
     }
 
-    public void touch(int x, int y) {
+    public void touch(int x, int y) throws TouchNotPossibleException {
         if(fields[x][y][0] != null) {
             fields[x][y][1] = new Bubble(x, y, 0);
         } else {
-            v.log("Don't you push into thin air!");
+            throw new TouchNotPossibleException();
         }
-        v.visualize(fields);
+        handler.update(fields);
     }
 
     public boolean nextCycle() {
         activate();
         boolean cont = move();
-        v.logSectionEnd();
-        v.visualize(fields);
+        handler.update(fields);
         return cont;
     }
 
@@ -62,12 +56,10 @@ public class BMap implements Cloneable {
                 for(int j = 1; j <= 4; j++) {
                     if (fields[x][y][j] != null) {
                         if(fields[x][y][0] != null) {
-                            v.log("Touching " + x + " " + y);
                             fields[x][y][j] = null;
                             if (((BField) fields[x][y][0]).touch()) {
                                 for (int d = 0; d < 4; d++) {
                                     fields[x][y][d + 1] = new Bubble(x, y, d);
-                                    v.log("Created bubble " + x + " " + y + " " + d);
                                 }
                                 fields[x][y][0] = null;
                             }
@@ -78,7 +70,7 @@ public class BMap implements Cloneable {
             }
         }
 
-        v.visualize(fields);
+        handler.update(fields);
 
     }
 
@@ -90,7 +82,6 @@ public class BMap implements Cloneable {
                     if(fields[x][y][j] != null) {
                         if(!((Bubble) fields[x][y][j]).isMoved()) {
                             Bubble b = (Bubble) fields[x][y][j];
-                            v.log("Moving bubble " + b.getX() + " " + b.getY() + " " + b.getDirection());
                             if (b.move()) {
 
                                 int k = 1;
@@ -119,9 +110,8 @@ public class BMap implements Cloneable {
                 }
             }
         }
-        v.log(count + " bubbles remaining");
 
-        v.visualize(fields);
+        handler.update(fields);
         return count > 0;
     }
 
@@ -143,6 +133,27 @@ public class BMap implements Cloneable {
         return true;
     }
 
+    public void modifyState(int x, int y, int amount) throws TouchNotPossibleException {
+        BField f = (BField)fields[x][y][0];
+
+        if(f != null) {
+            if(f.getState() + amount >= 1 && f.getState() + amount <= 4) {
+                f.setState(f.getState() + amount);
+            } else if(f.getState() + amount == 0) {
+                fields[x][y][0] = null;
+            } else {
+                throw new TouchNotPossibleException();
+            }
+        } else if(amount >= 1 && amount <= 4) {
+            fields[x][y][0] = new BField(amount);
+        } else {
+            throw new TouchNotPossibleException();
+        }
+
+        handler.update(fields);
+
+    }
+
     public BMap clone() {
 
         Entity[][][] newContents = new Entity[sizeX][sizeY][5];
@@ -161,6 +172,11 @@ public class BMap implements Cloneable {
             }
         }
 
-        return new BMap(newContents);
+        return new BMap(newContents, handler);
+    }
+
+    public void resetField(int x, int y) {
+        fields[x][y][0] = null;
+        handler.update(fields);
     }
 }

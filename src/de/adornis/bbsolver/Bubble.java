@@ -5,7 +5,6 @@ public class Bubble extends Entity {
     private final int direction;
     private int x;
     private int y;
-    private Visualizer v = Main.v;
     private boolean moved = false;
 
     Bubble(int x, int y, int direction) {
@@ -21,19 +20,15 @@ public class Bubble extends Entity {
         switch (direction) {
             case 0:
                 y--;
-                v.log("moved north");
                 break;
             case 1:
                 x++;
-                v.log("moved east");
                 break;
             case 2:
                 y++;
-                v.log("moved south");
                 break;
             case 3:
                 x--;
-                v.log("moved west");
                 break;
         }
 
