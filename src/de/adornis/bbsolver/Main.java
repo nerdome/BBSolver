@@ -1,8 +1,8 @@
 package de.adornis.bbsolver;
 
-public class Main {
+class Main {
 
-    public static void main(String[] args) {
-        new Visualizer();
+    public static void main(String[] notNeeded) {
+        Visualizer whateverTheFuckingHellYouWillEverNeedThisReferenceVariableForAgain = new Visualizer();
     }
 }

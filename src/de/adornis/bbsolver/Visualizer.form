@@ -399,7 +399,7 @@
           </component>
         </children>
       </scrollpane>
-      <component id="aeade" class="javax.swing.JButton" binding="brute">
+      <component id="aeade" class="javax.swing.JButton" binding="bruteForce">
         <constraints>
           <grid row="9" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -418,26 +418,24 @@
           <toolTipText value="Number of Touches"/>
         </properties>
       </component>
-      <component id="65af7" class="javax.swing.JTextField" binding="delay">
+      <component id="65af7" class="javax.swing.JTextField" binding="delayField">
         <constraints>
           <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
         <properties>
-          <text value="300"/>
+          <text value="10"/>
         </properties>
       </component>
-      <component id="4877e" class="javax.swing.JComboBox" binding="modus">
+      <component id="4877e" class="javax.swing.JComboBox" binding="mode">
         <constraints>
           <grid row="0" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <model>
             <item value="None"/>
-            <item value="Manual - Step by Step"/>
             <item value="Automatic - Standard Play Modus"/>
-            <item value="Brute Force - Solve the Puzzle"/>
             <item value="Create - Make your own Puzzle"/>
           </model>
         </properties>
@@ -452,18 +450,10 @@
       </component>
       <component id="200ae" class="javax.swing.JButton" binding="exit">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Quit"/>
-        </properties>
-      </component>
-      <component id="f3080" class="javax.swing.JButton" binding="cont">
-        <constraints>
-          <grid row="9" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Continue"/>
         </properties>
       </component>
       <component id="b0cb8" class="javax.swing.JButton" binding="save">
