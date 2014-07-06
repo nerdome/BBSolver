@@ -52,7 +52,6 @@ public class Visualizer extends JFrame {
     private JLabel ef;
     private JButton restart;
     private JButton exit;
-    private JButton cont;
     private JButton run;
     private JTextArea output;
     private JButton bruteForce;
@@ -67,7 +66,7 @@ public class Visualizer extends JFrame {
     public Visualizer() {
         // sets title
         super("BBSolver");
-        bubbleFields = new JLabel[5][6];
+        bubbleFields = new JLabel[BMapHandler.getSizeX()][BMapHandler.getSizeY()];
         setContentPane(visualizerRootPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -342,6 +341,7 @@ public class Visualizer extends JFrame {
                                 break;
                             default:
                                 c = Color.WHITE;
+                                break;
                         }
                         bubbleFields[j][i].setBackground(c);
                     } else {
@@ -358,53 +358,6 @@ public class Visualizer extends JFrame {
             }
         }
     }
-
-    /**
-     * logs a message to the log field
-     *
-     * @param message to log
-     */
-    public void log(String message) {
-        output.append("\n" + message);
-    }
-
-    /**
-     * logs a message to the log field with a level (representing brute force recursion levels)
-     *
-     * @param level   the recursion level
-     * @param message to log
-     */
-    public void logL(int level, String message) {
-        output.append("\n");
-        for (int i = 0; i < level; i++) {
-            output.append(" +");
-        }
-        output.append(" " + message);
-    }
-
-    /**
-     * logs a section end line
-     */
-    public void logSectionEnd() {
-        output.append("\n--------=======------\n");
-    }
-
-    /**
-     * logs to the console
-     *
-     * @param message to log
-     */
-    public void logBackground(String message) {
-        System.out.println(message);
-    }
-
-    /**
-     * clear the log field
-     */
-    public void cleanLog() {
-        output.setText("");
-    }
-
 
     /**
      * mouse listener for run mode
@@ -509,5 +462,51 @@ public class Visualizer extends JFrame {
         public void mouseExited(MouseEvent e) {
 
         }
+    }
+
+    /**
+     * logs a message to the log field
+     *
+     * @param message to log
+     */
+    public void log(String message) {
+        output.append("\n" + message);
+    }
+
+    /**
+     * logs a message to the log field with a level (representing brute force recursion levels)
+     *
+     * @param level   the recursion level
+     * @param message to log
+     */
+    public void logL(int level, String message) {
+        output.append("\n");
+        for (int i = 0; i < level; i++) {
+            output.append(" +");
+        }
+        output.append(" " + message);
+    }
+
+    /**
+     * logs a section end line
+     */
+    public void logSectionEnd() {
+        output.append("\n--------=======------\n");
+    }
+
+    /**
+     * logs to the console
+     *
+     * @param message to log
+     */
+    public void logBackground(String message) {
+        System.out.println(message);
+    }
+
+    /**
+     * clear the log field
+     */
+    public void cleanLog() {
+        output.setText("");
     }
 }
