@@ -9,10 +9,6 @@ import java.util.concurrent.ExecutionException;
 
 public class Visualizer extends JFrame {
 
-    // TODO make this not spawn as a window with no height and width
-    // TODO make the number of fields flexible according to sizeX and sizeY in the handler
-    // TODO give the fields a more flexible size
-
     // disable or enable gui as a whole
     public static boolean gui = true;
     private final BMapHandler handler;
@@ -20,36 +16,7 @@ public class Visualizer extends JFrame {
 
     private JPanel visualizerRootPanel;
     private JLabel[][] bubbleFields;
-    private JLabel aa;
-    private JLabel ba;
-    private JLabel ca;
-    private JLabel da;
-    private JLabel ea;
-    private JLabel ab;
-    private JLabel bb;
-    private JLabel cb;
-    private JLabel db;
-    private JLabel eb;
-    private JLabel ac;
-    private JLabel bc;
-    private JLabel cc;
-    private JLabel dc;
-    private JLabel ec;
-    private JLabel ad;
-    private JLabel bd;
-    private JLabel cd;
-    private JLabel dd;
-    private JLabel ed;
-    private JLabel ae;
-    private JLabel be;
-    private JLabel ce;
-    private JLabel de;
-    private JLabel ee;
-    private JLabel af;
-    private JLabel bf;
-    private JLabel cf;
-    private JLabel df;
-    private JLabel ef;
+    private JPanel fieldsPanel;
     private JButton restart;
     private JButton exit;
     private JButton run;
@@ -74,36 +41,23 @@ public class Visualizer extends JFrame {
         // auto scroll down
         ((DefaultCaret) output.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-        bubbleFields[0][0] = aa;
-        bubbleFields[1][0] = ba;
-        bubbleFields[2][0] = ca;
-        bubbleFields[3][0] = da;
-        bubbleFields[4][0] = ea;
-        bubbleFields[0][1] = ab;
-        bubbleFields[1][1] = bb;
-        bubbleFields[2][1] = cb;
-        bubbleFields[3][1] = db;
-        bubbleFields[4][1] = eb;
-        bubbleFields[0][2] = ac;
-        bubbleFields[1][2] = bc;
-        bubbleFields[2][2] = cc;
-        bubbleFields[3][2] = dc;
-        bubbleFields[4][2] = ec;
-        bubbleFields[0][3] = ad;
-        bubbleFields[1][3] = bd;
-        bubbleFields[2][3] = cd;
-        bubbleFields[3][3] = dd;
-        bubbleFields[4][3] = ed;
-        bubbleFields[0][4] = ae;
-        bubbleFields[1][4] = be;
-        bubbleFields[2][4] = ce;
-        bubbleFields[3][4] = de;
-        bubbleFields[4][4] = ee;
-        bubbleFields[0][5] = af;
-        bubbleFields[1][5] = bf;
-        bubbleFields[2][5] = cf;
-        bubbleFields[3][5] = df;
-        bubbleFields[4][5] = ef;
+        for(int i = 0; i < bubbleFields[0].length; i++) {
+            for(int j = 0; j < bubbleFields.length; j++) {
+                bubbleFields[j][i] = new JLabel("akakaka");
+                bubbleFields[j][i].setMinimumSize(new Dimension(86, 86));
+                bubbleFields[j][i].setMaximumSize(new Dimension(86, 86));
+
+                // in order to see background color
+                bubbleFields[j][i].setOpaque(true);
+            }
+        }
+
+        fieldsPanel.setLayout(new GridLayout(bubbleFields.length, bubbleFields[0].length));
+        for( JLabel[] currentOuter : bubbleFields ) {
+            for( JLabel current : currentOuter ) {
+                fieldsPanel.add(current);
+            }
+        }
 
         delay = Integer.parseInt(delayField.getText());
 
@@ -255,6 +209,8 @@ public class Visualizer extends JFrame {
 
         // TODO improve dirty workaround to get the event to fire
         mode.setSelectedIndex(0);
+
+        pack();
     }
 
     /**
@@ -279,9 +235,6 @@ public class Visualizer extends JFrame {
                 } else {
                     bubbleFields[x][y].addMouseListener(new RunModeMouseListener(currentX, currentY));
                 }
-
-                // in order to see background color
-                bubbleFields[x][y].setOpaque(true);
             }
         }
     }
@@ -319,11 +272,12 @@ public class Visualizer extends JFrame {
 
             // gui output
 
-            for (int i = 0; i < BMapHandler.getSizeY(); i++) {
-                for (int j = 0; j < BMapHandler.getSizeX(); j++) {
-                    if (fields[j][i][0] != null) {
-                        int state = ((BField) fields[j][i][0]).getState();
-                        bubbleFields[j][i].setText("=" + state + "= ");
+            for (int y = 0; y < BMapHandler.getSizeY(); y++) {
+                for (int x = 0; x < BMapHandler.getSizeX(); x++) {
+                    JLabel currentComponent = (JLabel) (fieldsPanel.getComponent(x * BMapHandler.getSizeY() + y));
+                    if (fields[x][y][0] != null) {
+                        int state = ((BField) fields[x][y][0]).getState();
+                        currentComponent.setText("=" + state + "= ");
 
                         Color c;
                         switch (state) {
@@ -343,15 +297,14 @@ public class Visualizer extends JFrame {
                                 c = Color.WHITE;
                                 break;
                         }
-                        bubbleFields[j][i].setBackground(c);
+                        currentComponent.setBackground(c);
                     } else {
-                        bubbleFields[j][i].setText("=-= ");
-                        bubbleFields[j][i].setBackground(Color.WHITE);
+                        currentComponent.setText("=-= ");
+                        currentComponent.setBackground(Color.WHITE);
                     }
                     for (int z = 1; z <= 4; z++) {
-                        if (fields[j][i][z] != null) {
-                            // bubbleFields[j][i].setText(bubbleFields[j][i].getText() + ((Bubble) fields[j][i][z]).getDirection());
-                            bubbleFields[j][i].setText(bubbleFields[j][i].getText() + "(O)");
+                        if (fields[x][y][z] != null) {
+                            currentComponent.setText(currentComponent.getText() + "(O)");
                         }
                     }
                 }
